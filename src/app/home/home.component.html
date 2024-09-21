@@ -7,60 +7,11 @@
   </div>
 
   <!-- Informações do Pokémon selecionado -->
-  <div *ngIf="pokemonData" class="card-container" [ngClass]="{'show-details': showDetails}" (click)="toggleDetails()">
-    <div class="card">
-      <div class="card-front" [ngStyle]="getCardStyles()">
-        <img class="pokemon-sprite" [src]="pokemonData?.sprites.front_default" alt="{{pokemonData?.name}}">
-        <h2>{{pokemonData?.name}}</h2>
-        <div class="pokemon-types">
-          <span *ngFor="let type of pokemonData?.types" 
-                [ngStyle]="{'background-color': getTypeColorWithTransparency(type.type.name, 1)}">
-            {{ type.type.name | titlecase }}
-          </span>
-        </div>
-
-      </div>
-      <div class="card-back">
-        <div class="card-back-content">
-          <div class="card-back-info">
-            <p><strong>Altura:</strong> {{ pokemonData.height }} m</p>
-            <p><strong>Peso:</strong> {{ pokemonData.weight }} Kg</p>
-          </div>
-          <div class="card-back-stats">
-            <p><strong>Status:</strong></p>
-            <div style="width: 100%">
-              <canvas baseChart
-                      [data]="radarChartData"
-                      [options]="radarChartOptions"
-                      [type]="radarChartType">
-              </canvas>
-            </div>
-          </div>
-          <div class="card-back-abilities">
-            <p><strong>Habilidades:</strong></p>
-            <ul>
-              <li *ngFor="let ability of pokemonData.abilities">
-                {{ ability.ability.name | titlecase }} <span *ngIf="ability.is_hidden">(Hidden)</span>
-              </li>
-            </ul>
-          </div>
-          <div class="card-back-types">
-            <p><strong>Types:</strong></p>
-            <ul>
-              <li *ngFor="let type of pokemonData.types">
-                {{ type.type.name | titlecase }}
-              </li>
-            </ul>
-          </div>
-          <div class="card-back-sprites">
-            <img [src]="pokemonData.sprites.front_default" alt="{{ pokemonData.name }} sprite">
-            <img [src]="pokemonData.sprites.front_shiny" alt="{{ pokemonData.name }} shiny sprite">
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+  <app-pokemon-details 
+  *ngIf="pokemonData" 
+  [pokemonData]="pokemonData" 
+  [showDetails]="showDetails">
+</app-pokemon-details>
 
   <!-- Mensagem para nenhuma busca realizada -->
   <div *ngIf="!pokemonData" class="no-search">
