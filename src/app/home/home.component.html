@@ -1,0 +1,70 @@
+<div class="home-container">
+  <div class="wave"></div>
+
+  <!-- Caixa de busca -->
+  <div class="search-box">
+    <app-pokemon-search (pokemonSearched)="onPokemonSearched($event)"></app-pokemon-search>
+  </div>
+
+  <!-- Informações do Pokémon selecionado -->
+  <div *ngIf="pokemonData" class="card-container" [ngClass]="{'show-details': showDetails}" (click)="toggleDetails()">
+    <div class="card">
+      <div class="card-front" [ngStyle]="getCardStyles()">
+        <img class="pokemon-sprite" [src]="pokemonData?.sprites.front_default" alt="{{pokemonData?.name}}">
+        <h2>{{pokemonData?.name}}</h2>
+        <div class="pokemon-types">
+          <span *ngFor="let type of pokemonData?.types" 
+                [ngStyle]="{'background-color': getTypeColorWithTransparency(type.type.name, 1)}">
+            {{ type.type.name | titlecase }}
+          </span>
+        </div>
+
+      </div>
+      <div class="card-back">
+        <div class="card-back-content">
+          <div class="card-back-info">
+            <p><strong>Height:</strong> {{ pokemonData.height }} m</p>
+            <p><strong>Weight:</strong> {{ pokemonData.weight }} Kg</p>
+          </div>
+          <div class="card-back-stats">
+            <p><strong>Base Stats:</strong></p>
+            <div style="width: 100%">
+              <canvas baseChart
+                      [data]="radarChartData"
+                      [options]="radarChartOptions"
+                      [type]="radarChartType">
+              </canvas>
+            </div>
+          </div>
+          <div class="card-back-abilities">
+            <p><strong>Abilities:</strong></p>
+            <ul>
+              <li *ngFor="let ability of pokemonData.abilities">
+                {{ ability.ability.name | titlecase }} <span *ngIf="ability.is_hidden">(Hidden)</span>
+              </li>
+            </ul>
+          </div>
+          <div class="card-back-types">
+            <p><strong>Types:</strong></p>
+            <ul>
+              <li *ngFor="let type of pokemonData.types">
+                {{ type.type.name | titlecase }}
+              </li>
+            </ul>
+          </div>
+          <div class="card-back-sprites">
+            <img [src]="pokemonData.sprites.front_default" alt="{{ pokemonData.name }} sprite">
+            <img [src]="pokemonData.sprites.front_shiny" alt="{{ pokemonData.name }} shiny sprite">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mensagem para nenhuma busca realizada -->
+  <div *ngIf="!pokemonData" class="no-search">
+    <img src="/assets/no-search-icon.png" alt="No search" style="width: 130px; height: 110px;">
+    <p>Você ainda não realizou nenhuma busca!</p>
+  </div>
+</div>

@@ -1,0 +1,151 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-box {
+  display: block;
+  height: 35rem;
+  width: 100%;
+}
+
+.pokemon-info {
+  margin-top: 50px;
+  text-align: center;
+  color: #888;
+}
+
+.no-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.no-search img {
+  width: 100px;
+  height: 100px;
+  opacity: 0.5;
+}
+
+.no-search p {
+  color: #888;
+  margin-top: 20px;
+}
+
+.card-container {
+  perspective: 1000px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+}
+
+.card {
+  width: 250px;
+  height: 350px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s, width 0.6s, height 0.6s;
+
+  .pokemon-sprite {
+    width: 200px;
+    height: 200px;
+  }
+
+  h2 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+  }
+
+  .pokemon-types {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+
+    span {
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      color: white;
+      text-transform: capitalize;
+    }
+  }
+}
+
+.card-front, .card-back {
+  position: absolute;
+  backface-visibility: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.card-front {
+  background-color: #fff;
+}
+
+.card-back {
+  background-color: #f8f8f8;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: row;
+}
+
+.card-back-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; // Centraliza os itens
+  justify-content: center;
+  text-align: center; // Alinha o texto ao centro
+  padding: 20px;
+}
+
+.card-back-info, .card-back-stats, .card-back-abilities, .card-back-types {
+  margin-bottom: 15px;
+  padding: 10px;
+  width: 100%;
+}
+
+.card-back-abilities ul, .card-back-types ul {
+  list-style: none;
+  padding: 5px;
+}
+
+.card-back-abilities li, .card-back-types li {
+  margin: 5px 0;
+  padding: 10px;
+  background-color: #dcdcdc;
+  border-radius: 5px;
+}
+
+.card-back-sprites {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.card-back-sprites img {
+  width: 100px;
+  height: 100px;
+}
+
+.card-container.show-details .card {
+  transform: rotateY(180deg);
+  width: 900px; // Novo tamanho para o card-back
+  height: 400px; // Novo tamanho para o card-back
+}

@@ -1,0 +1,28 @@
+<div class="search-container">
+  <header class="header">
+    <img src="/assets/logo-totvs.png" alt="Totvs logo" class="logo" />
+  </header>
+  <div class="search-box">
+    <input 
+      type="text" 
+      [(ngModel)]="pokemonName" 
+      (keyup.enter)="searchPokemon()"
+      (input)="filterPokemons()"
+      (click)="toggleDropdown()"
+      placeholder="Digite o nome do Pokémon..."
+    />
+    
+    <div *ngIf="showDropdown && filteredPokemons.length > 0" class="dropdown">
+      <ul>
+        <li *ngFor="let pokemon of filteredPokemons" (click)="selectPokemon(pokemon)">
+          <img [src]="pokemon.sprite" alt="{{pokemon.name}}" width="30" height="30">
+          {{ pokemon.name }}
+        </li>
+      </ul>
+    </div>
+    
+    <button (click)="searchPokemon()">
+      <mat-icon aria-hidden="false" aria-label="search" fontIcon="search"/>
+    </button>
+  </div>
+</div>
