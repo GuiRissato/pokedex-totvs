@@ -23,11 +23,11 @@
       <div class="card-back">
         <div class="card-back-content">
           <div class="card-back-info">
-            <p><strong>Height:</strong> {{ pokemonData.height }} m</p>
-            <p><strong>Weight:</strong> {{ pokemonData.weight }} Kg</p>
+            <p><strong>Altura:</strong> {{ pokemonData.height }} m</p>
+            <p><strong>Peso:</strong> {{ pokemonData.weight }} Kg</p>
           </div>
           <div class="card-back-stats">
-            <p><strong>Base Stats:</strong></p>
+            <p><strong>Status:</strong></p>
             <div style="width: 100%">
               <canvas baseChart
                       [data]="radarChartData"
@@ -37,7 +37,7 @@
             </div>
           </div>
           <div class="card-back-abilities">
-            <p><strong>Abilities:</strong></p>
+            <p><strong>Habilidades:</strong></p>
             <ul>
               <li *ngFor="let ability of pokemonData.abilities">
                 {{ ability.ability.name | titlecase }} <span *ngIf="ability.is_hidden">(Hidden)</span>

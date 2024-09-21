@@ -7,7 +7,6 @@ import { Pokemon } from '../../../types';
 import { Chart, ChartConfiguration, ChartData, ChartType, registerables } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
-// Register the necessary components from Chart.js
 Chart.register(...registerables);
 
 @Component({
@@ -39,7 +38,7 @@ export class HomeComponent implements OnInit {
       }
     }
   };
-  public radarChartLabels: string[] = ['HP', 'Attack', 'Defense', 'Special Attack', 'Special Defense', 'Speed'];
+  public radarChartLabels: string[] = ['HP', 'Atque', 'Defesa', 'Ataque Especial', 'Defesa Especial', 'velocidade'];
 
   public radarChartData: ChartData<'radar'> = {
     labels: this.radarChartLabels,

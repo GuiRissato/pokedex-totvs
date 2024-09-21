@@ -19,6 +19,7 @@ import { Pokemon, SearchedPokemon } from '../../../../types';
 export class PokemonSearchComponent {
   pokemonName: string = '';
   errorMessage: string = '';
+  pokemonNotFound: boolean = false;
   searchedPokemons$: Observable<{ name: string; sprite: string; }[]> | undefined;
   showDropdown: boolean = false;
   searchedPokemons: SearchedPokemon[] = [];
@@ -63,6 +64,8 @@ export class PokemonSearchComponent {
         },
         error: (err) => {
           console.error('Erro ao buscar Pokémon', err);
+          this.pokemonNotFound = true;
+          this.pokemonName = '';
         }
       });
     }
