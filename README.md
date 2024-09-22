@@ -11,7 +11,7 @@ Insert
 Descreva a estrutura do projeto, incluindo os principais diretórios e arquivos, e o que cada um deles contém.
 
 ## Estrutura do Projeto
-
+```
 src/
 |-- app/
 |   |-- components/
@@ -65,6 +65,7 @@ src/
 |-- tsconfig.json
 |-- tsconfig.spec.json
 |-- types.ts
+```
 
 3. Configuração e Instalação
 Para instalar e executar o projeto localmente, siga os passos abaixo:
@@ -80,11 +81,11 @@ Para instalar e executar o projeto localmente, siga os passos abaixo:
 npm install
 ```
 
-3. execução dos testes unitários:
+3. Execução dos testes unitários:
 ```Bash
 npm test
 ```
-**Lembre-se de verificar os resultados dos testes e caso crie novas funcionalidades crie novos testes para ela**
+**Lembre-se de verificar os resultados dos testes e caso crie novas funcionalidades crie novos testes para ela.**
 
 4. Execute o servidor de desenvolvimento:
 ```Bash
