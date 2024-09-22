@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, Renderer2, ViewChild } from '@angular/core';
 import { PokemonApiService } from '../../services/pokemon-api.service';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon'
@@ -17,6 +17,7 @@ import { Pokemon, SearchedPokemon } from '../../../../types';
   styleUrl: './pokemon-search.component.scss'
 })
 export class PokemonSearchComponent {
+  @ViewChild('searchBox') searchBox: ElementRef | undefined;
   pokemonName: string = '';
   errorMessage: string = '';
   pokemonNotFound: boolean = false;
@@ -29,10 +30,17 @@ export class PokemonSearchComponent {
 
   constructor(
     private pokemonService: PokemonApiService,
-    private store: Store<{pokemonState: PokemonState}>
+    private store: Store<{pokemonState: PokemonState}>,
+    private renderer: Renderer2, 
+    private elementRef: ElementRef
   ) {
     this.searchedPokemons$ = this.store.select(state => state.pokemonState.searchedPokemons)
     this.filterPokemons();
+    this.renderer.listen('window', 'click', (e: Event) => {
+      if (!this.elementRef.nativeElement.contains(e.target)) {
+        this.showDropdown = false;
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -75,9 +83,8 @@ export class PokemonSearchComponent {
   }
 
   selectPokemon(pokemon: SearchedPokemon) {
-    console.log('select',pokemon)
     this.pokemonName = pokemon.name;  
-    this.showDropdown = false;
+    this.toggleDropdown();
     this.searchPokemon();
   }
 
