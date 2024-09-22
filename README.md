@@ -1,13 +1,10 @@
-1. **Visão Geral do Projeto**
-Este projeto é uma aplicação Angular que permite aos usuários pesquisar informações sobre Pokémon. A aplicação inclui componentes para busca de Pokémon, exibição de detalhes e integração com uma API externa para obter dados dos Pokémon. Além disso, a aplicação utiliza o NgRx Store para gerenciamento de estado.
-
 # Projeto Pokémon
 
 Este projeto é uma aplicação web que permite aos usuários pesquisar informações sobre Pokémon. A aplicação utiliza a API do Pokémon para buscar dados e exibir detalhes sobre os Pokémon pesquisados.
 Copy
 Insert
 
-2. Estrutura do Projeto
+1. Estrutura do Projeto
 Descreva a estrutura do projeto, incluindo os principais diretórios e arquivos, e o que cada um deles contém.
 
 ## Estrutura do Projeto
@@ -67,7 +64,7 @@ src/
 |-- types.ts
 ```
 
-3. Configuração e Instalação
+2. Configuração e Instalação
 Para instalar e executar o projeto localmente, siga os passos abaixo:
 
 1. Clone o repositório:
