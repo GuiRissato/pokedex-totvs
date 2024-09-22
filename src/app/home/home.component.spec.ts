@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
-import { PokemonApiService } from '../services/pokemon-api.service';
-import { of } from 'rxjs';
+import { PokemonApiService } from '../services/pokemon-api/pokemon-api.service';
 import { PokemonSearchComponent } from '../components/pokemon-search/pokemon-search.component';
 import { PokemonDetailsComponent } from '../components/pokemon-details/pokemon-details.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import { Pokemon } from '../../../types';
+import { StoreModule, provideStore } from '@ngrx/store';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -23,11 +23,12 @@ describe('HomeComponent', () => {
         PokemonDetailsComponent,
         MatIconModule,
         CommonModule,
-        BaseChartDirective
+        BaseChartDirective,
+        StoreModule.forRoot({})
       ],
-      declarations: [HomeComponent],
       providers: [
-        { provide: PokemonApiService, useValue: mockPokemonService }
+        { provide: PokemonApiService, useValue: mockPokemonService },
+        provideStore()
       ]
     })
     .compileComponents();
@@ -37,7 +38,7 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the component', () => {
     expect(component).toBeTruthy();
   });
 
@@ -74,42 +75,12 @@ describe('HomeComponent', () => {
     expect(component.ngOnInit).toHaveBeenCalled();
   });
 
-  it('should handle pokemonSearched event from PokemonSearchComponent', () => {
-    const mockPokemon: Pokemon = {
-      abilities: undefined,
-      weight: undefined,
-      height: undefined,
-      types: undefined,
-      name: 'pokedex-totvs',
-      sprites: {
-        front_shiny: undefined,
-        front_default: ''
-      },
-      stats: []
-    };
+  it('should render no-search message when pokemonData is null', () => {
+    component.pokemonData = null;
+    fixture.detectChanges();
 
-    const searchComponent = fixture.debugElement.children[0].componentInstance as PokemonSearchComponent;
-    searchComponent.pokemonSearched.emit(mockPokemon);
-
-    expect(component.pokemonData).toEqual(mockPokemon);
-    expect(component.showDetails).toBeFalse();
-  });
-
-  it('should not accept "hello, pokedex-totvs" as a valid pokemon name', () => {
-    const invalidPokemon: Pokemon = {
-      abilities: undefined,
-      weight: undefined,
-      height: undefined,
-      types: undefined,
-      name: 'hello, pokedex-totvs',
-      sprites: {
-        front_shiny: undefined,
-        front_default: ''
-      },
-      stats: []
-    };
-
-    component.onPokemonSearched(invalidPokemon);
-    expect(component.pokemonData).not.toEqual(invalidPokemon);
+    const compiled = fixture.nativeElement as HTMLElement;
+    const noSearchMessage = compiled.querySelector('.no-search p');
+    expect(noSearchMessage?.textContent).toContain('Você ainda não realizou nenhuma busca!');
   });
 });

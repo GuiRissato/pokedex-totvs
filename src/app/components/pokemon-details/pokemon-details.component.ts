@@ -4,7 +4,7 @@ import { Chart, ChartConfiguration, ChartData, ChartType, registerables } from '
 import { BaseChartDirective } from 'ng2-charts';
 import { Pokemon } from '../../../../types';
 import { CommonModule } from '@angular/common';
-import { StateService } from '../../services/state.service'; // Import the StateService
+import { StateService } from '../../services/state-dropdown/state.service';
 
 Chart.register(...registerables);
 

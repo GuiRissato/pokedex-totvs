@@ -1,9 +1,9 @@
 import { Component, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PokemonApiService } from '../../services/pokemon-api.service';
+import { PokemonApiService } from '../../services/pokemon-api/pokemon-api.service';
 import { Store } from '@ngrx/store';
 import { Renderer2 } from '@angular/core';
-import { StateService } from '../../services/state.service'; 
+import { StateService } from '../../services/state-dropdown/state.service'; 
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -47,7 +47,7 @@ export class PokemonSearchComponent {
 
   ngOnInit(): void {
     this.searchedPokemons$?.subscribe(pokemons => {
-      this.searchedPokemons = pokemons;
+      this.searchedPokemons = pokemons || [];
     });
   }  
 
@@ -56,6 +56,7 @@ export class PokemonSearchComponent {
       this.stateService.setShowDetails(false);
       this.pokemonService.getPokemon(this.pokemonName).subscribe({
         next: (pokemon: Pokemon | any) => {
+          console.log(pokemon)
           this.pokemonSearched.emit(pokemon);
            this.searchedPokemons$?.subscribe(searchedPokemons => {
             const pokemonExists = searchedPokemons.some(p => p.name.toLowerCase() === pokemon.name.toLowerCase());
