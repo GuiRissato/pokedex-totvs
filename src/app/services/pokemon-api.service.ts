@@ -7,8 +7,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class PokemonApiService {
   private apiUrl = 'https://pokeapi.co/api/v2/pokemon';
-  private pokemonDataSource = new BehaviorSubject<any>(null); // Compartilhar dados
-  pokemonData$ = this.pokemonDataSource.asObservable(); // Observable para acessar os dados
+  private pokemonDataSource = new BehaviorSubject<any>(null);
+  pokemonData$ = this.pokemonDataSource.asObservable();
 
 
   constructor(
@@ -20,6 +20,6 @@ export class PokemonApiService {
   }
 
   setPokemonData(data: any) {
-    this.pokemonDataSource.next(data); // Atualizar dados do Pokémon
+    this.pokemonDataSource.next(data); 
   }
 }
