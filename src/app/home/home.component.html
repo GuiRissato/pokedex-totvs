@@ -3,14 +3,15 @@
 
   <!-- Caixa de busca -->
   <div class="search-box">
-    <app-pokemon-search (pokemonSearched)="onPokemonSearched($event)"></app-pokemon-search>
+    <app-pokemon-search 
+      (pokemonSearched)="onPokemonSearched($event)"
+    />
   </div>
 
   <!-- Informações do Pokémon selecionado -->
   <app-pokemon-details 
   *ngIf="pokemonData" 
-  [pokemonData]="pokemonData" 
-  [showDetails]="showDetails"/>
+  [pokemonData]="pokemonData"/>
 
   <!-- Mensagem para nenhuma busca realizada -->
   <div *ngIf="!pokemonData" class="no-search">

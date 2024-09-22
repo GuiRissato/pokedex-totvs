@@ -7,8 +7,6 @@ import { CommonModule } from '@angular/common';
 import { Pokemon } from '../../../types';
 import { BaseChartDirective } from 'ng2-charts';
 
-
-
 @Component({
   selector: 'app-home',
   standalone: true,

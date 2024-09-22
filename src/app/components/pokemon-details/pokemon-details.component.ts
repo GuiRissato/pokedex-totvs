@@ -1,22 +1,29 @@
+// src/app/components/pokemon-details/pokemon-details.component.ts
 import { Component, Input } from '@angular/core';
-import {Chart, ChartConfiguration, ChartData, ChartType, registerables } from 'chart.js';
+import { Chart, ChartConfiguration, ChartData, ChartType, registerables } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { Pokemon } from '../../../../types';
 import { CommonModule } from '@angular/common';
+import { StateService } from '../../services/state.service'; // Import the StateService
 
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-pokemon-details',
   standalone: true,
-  imports: [CommonModule,BaseChartDirective],
+  imports: [CommonModule, BaseChartDirective],
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.scss'
 })
-
 export class PokemonDetailsComponent {
   @Input() pokemonData: Pokemon | null = null;
-  @Input() showDetails = false;
+  showDetails: boolean = false;
+
+  constructor(private stateService: StateService) {
+    this.stateService.showDetails$.subscribe(value => {
+      this.showDetails = value;
+    });
+  }
 
   public radarChartOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -46,7 +53,7 @@ export class PokemonDetailsComponent {
   public radarChartType: ChartType = 'radar';
 
   toggleDetails() {
-    this.showDetails = !this.showDetails;
+    this.stateService.setShowDetails(!this.showDetails);
   }
 
   getCardStyles() {
@@ -100,17 +107,4 @@ export class PokemonDetailsComponent {
     steel: '#B8B8D0',
     fairy: '#EE99AC'
   };
-
-  getGender(genderRate: number): string {
-    if (genderRate === -1) {
-      return 'Genderless';
-    }
-    const femaleRate = (genderRate / 8) * 100;
-    const maleRate = 100 - femaleRate;
-    return `Male: ${maleRate}%, Female: ${femaleRate}%`;
-  }
-
-  getWeaknesses(types: any[]): string {
-    return 'Implementar lógica de fraquezas';
-  }
 }
