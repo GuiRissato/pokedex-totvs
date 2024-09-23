@@ -1,8 +1,6 @@
 # Projeto Pokémon
 
 Este projeto é uma aplicação web que permite aos usuários pesquisar informações sobre Pokémon. A aplicação utiliza a API do Pokémon para buscar dados e exibir detalhes sobre os Pokémon pesquisados.
-Copy
-Insert
 
 1. Estrutura do Projeto
 Descreva a estrutura do projeto, incluindo os principais diretórios e arquivos, e o que cada um deles contém.
