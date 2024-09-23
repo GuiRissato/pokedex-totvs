@@ -3,7 +3,6 @@
 Este projeto é uma aplicação web que permite aos usuários pesquisar informações sobre Pokémon. A aplicação utiliza a API do Pokémon para buscar dados e exibir detalhes sobre os Pokémon pesquisados.
 
 1. Estrutura do Projeto
-Descreva a estrutura do projeto, incluindo os principais diretórios e arquivos, e o que cada um deles contém.
 
 ## Estrutura do Projeto
 ```
@@ -136,12 +135,14 @@ As seguintes bibliotecas foram utilizadas no desenvolvimento deste projeto:
  - searchedPokemons: Lista de Pokémon pesquisados.
  - filteredPokemons: Lista de Pokémon filtrados com base na pesquisa.
  - pokemonSearched: Evento emitido quando um Pokémon é encontrado.
+
 ### 5. Métodos
  - ngOnInit(): Inicializa o componente e configura o Observable para a lista de Pokémon pesquisados.
  - searchPokemon(): Realiza a busca do Pokémon utilizando o serviço PokemonApiService.
  - toggleDropdown(): Alterna a exibição do dropdown de sugestões.
  - selectPokemon(pokemon: SearchedPokemon): Seleciona um Pokémon da lista de sugestões e realiza a busca.
  - filterPokemons(): Filtra a lista de Pokémon com base no nome digitado.
+
 ### 6. Serviços
  1. PokemonApiService
  - O PokemonApiService é responsável por fazer requisições à API externa para obter dados dos Pokémon.
@@ -263,7 +264,7 @@ GET https://pokeapi.co/api/v2/pokemon/pikachu
   - A resposta é um objeto JSON contendo várias propriedades detalhadas sobre o Pokémon.
 
  2. StateService
- - O StateService gerencia o estado da aplicação, incluindo a exibição de detalhes dos Pokémon.
+ - O StateService gerencia o estado da exibição de detalhes dos Pokémon.
 
  3. Servidor
  - O servidor da aplicação é configurado nos arquivos main.server.ts e server.ts.
