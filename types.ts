@@ -1,11 +1,11 @@
 export interface Pokemon {
 abilities: any;
-weight: any;
-height: any;
+weight: number;
+height: number;
   types: any;
   name: string;
   sprites: {
-front_shiny: any;
+front_shiny: string;
     front_default: string;
   };
   stats: {

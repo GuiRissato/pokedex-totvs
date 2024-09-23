@@ -3,18 +3,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-grow: 1;
 }
 
 .search-box {
   display: block;
-  height: 35rem;
+  height: 25rem;
   width: 100%;
-}
 
-.pokemon-info {
-  margin-top: 50px;
-  text-align: center;
-  color: #888;
+  @media screen and (max-height: 850px) {
+    height: 15rem;
+  }
 }
 
 .no-search {
@@ -22,16 +21,26 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 10rem;
+
+  @media screen and (max-height: 850px) {
+    margin-top: 8rem;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+    opacity: 0.5;
+  }
+
+  p {
+    color: #888;
+    margin-top: 20px;
+  }
 }
 
-.no-search img {
-  width: 100px;
-  height: 100px;
-  opacity: 0.5;
-}
-
-.no-search p {
-  color: #888;
-  margin-top: 20px;
+.pokemon-details{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

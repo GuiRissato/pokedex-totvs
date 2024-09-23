@@ -1,11 +1,15 @@
 .card-container {
-    perspective: 1000px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
     overflow: hidden;
+    margin-top: 5rem;
+
+    @media screen and (max-height: 850px) {
+      margin-top: 2rem;
+    }
   }
   
   .card {
