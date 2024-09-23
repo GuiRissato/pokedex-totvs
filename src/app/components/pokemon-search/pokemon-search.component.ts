@@ -56,7 +56,6 @@ export class PokemonSearchComponent {
       this.stateService.setShowDetails(false);
       this.pokemonService.getPokemon(this.pokemonName).subscribe({
         next: (pokemon: Pokemon | any) => {
-          console.log(pokemon)
           this.pokemonSearched.emit(pokemon);
            this.searchedPokemons$?.subscribe(searchedPokemons => {
             const pokemonExists = searchedPokemons.some(p => p.name.toLowerCase() === pokemon.name.toLowerCase());
